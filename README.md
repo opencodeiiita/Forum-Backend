@@ -2,7 +2,7 @@
 
 Forum is a discussion forum designed for the students of IIITA to ask questions, share their experiences and to know what their peeps are up to.
 
-This repository holds the backend of the project. The backend is being built in **Django-REST framework** with **Python** as the driver language. The frontend of this application is being built using **Flutter** as a separate project under **OpenCode'22**.
+This repository holds the backend of the project. The backend is being built in **Django-REST framework** with **Python** as the driver language.
 
 The backend will consist of creating **Application Programming Interfaces (APIs)** and **Database Models (SQL)** for the app. These will be used directly by the frontend team.
 
