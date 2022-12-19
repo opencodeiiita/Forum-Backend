@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'ckeditor',                     #for profiles model, using Rich text field
-    'forum.apps.ForumConfig',
     'accounts.apps.AccountsConfig',
+    'forum.apps.ForumConfig',
 ]
 
 MIDDLEWARE = [
