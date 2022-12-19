@@ -6,6 +6,16 @@ __pycache__
 db.sqlite3
 media
 
+#ignoring uploaded png files
+*.png
+*.jpg
+
+
+#ignoring migration files
+**/migrations/*
+**/migrations/
+**/**/migrations
+
 #ignoring pip files
 Pipfile
 Pipfile.lock
