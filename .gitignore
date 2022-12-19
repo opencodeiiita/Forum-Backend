@@ -6,6 +6,10 @@ __pycache__
 db.sqlite3
 media
 
+#ignoring pip files
+Pipfile
+Pipfile.lock
+
 # Backup files # 
 *.bak 
 
