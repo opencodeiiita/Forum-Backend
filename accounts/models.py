@@ -13,3 +13,6 @@ class Profile(models.Model):
     twitter_link = models.CharField(max_length=254) 
     bio = RichTextField()               #about, Intersts & Hobbies
     skills = RichTextField()            #tech & otherwise
+
+    def __str__(self):
+        return self.user
