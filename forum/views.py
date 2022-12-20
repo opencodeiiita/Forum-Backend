@@ -11,5 +11,5 @@ from forum.models import Answer, Question
 
 #     def get_queryset(self):
 #         self.question = get_object_or_404(Question, name=self.kwargs['question'])
-#         qs = super().get_queryset().filter(question_related=self.question).order_by("upvotes")
+#         qs = super().get_queryset().filter(question_related=self.question).order_by("created_at")
 #         return qs
