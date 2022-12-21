@@ -9,7 +9,7 @@ class Answer(models.Model):
     # question_related = models.ForeignKey(Question, on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)
     downvotes = models.IntegerField(default=0)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default='NO USER')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):  
-        return str(self.id)
+        return self.user.username
