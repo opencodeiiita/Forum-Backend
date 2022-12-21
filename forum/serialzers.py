@@ -14,4 +14,4 @@ class AnswerSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Answer
-        fields = ('user', 'created_at','updated_at', 'content', 'upvotes', 'downvotes')
+        fields = ('user', 'created_at','updated_at', 'content', 'upvotes', 'downvotes','question_related')
