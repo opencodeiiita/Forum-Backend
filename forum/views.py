@@ -2,7 +2,7 @@ from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
 
 from forum.models import Answer, Question
-from forum.serialzers import AnswerSerializer, QuestionSerialzer
+from forum.serialzers import AnswerSerializer, QuestionSerializer
 from django.shortcuts import get_object_or_404
 
 from forum.models import Question
@@ -30,11 +30,11 @@ class AnswerView(viewsets.ModelViewSet):
 
 class QuestionView(viewsets.ModelViewSet):
     queryset = Question.objects.all()
-    serializer_class = QuestionSerialzer
+    serializer_class = QuestionSerializer
     permission_classes = [permissions.IsAuthenticated]
     
     def create(self, request, *args, **kwargs):
-        serializer = QuestionSerialzer(data=request.data)
+        serializer = QuestionSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
