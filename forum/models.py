@@ -18,7 +18,7 @@ class Question(models.Model):
     # Fields for the question text and the date/time it was asked
     title = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published', auto_now_add=True)
-    updated_date = models.DateTimeField('date updated', auto_now_add=True)
+    updated_date = models.DateTimeField('date updated', auto_now=True)
 
     # Additional fields for storing additional information about the question
     # such as the user who asked it and any tags or categories it belongs to
