@@ -3,7 +3,7 @@ from forum.models import Question, Answer
 
 class QuestionSerializer(serializers.ModelSerializer):
     #overriding author field to return author's name
-    author = serializers.CharField(source='author.username')
+    author = serializers.CharField(source='author.username', read_only=True)
     
     class Meta:
         model = Question
