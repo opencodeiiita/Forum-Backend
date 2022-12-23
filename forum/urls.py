@@ -4,6 +4,7 @@ from forum import views
 
 router = routers.DefaultRouter()
 router.register(r'answers', views.AnswerView)
+router.register(r'questions', views.QuestionView)   
 
 urlpatterns = [
     path('', include(router.urls)),
