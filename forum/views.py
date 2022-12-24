@@ -15,6 +15,11 @@ class AnswerView(viewsets.ModelViewSet):
     serializer_class = AnswerSerializer
     permission_classes = [permissions.IsAuthenticated]
     
+    def list(self, request):
+        queryset = User.objects.all()
+        serializer = AnswerSerializer(queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         serializer = AnswerSerializer(data=request.data)
         if not serializer.is_valid():
@@ -26,30 +31,6 @@ class AnswerView(viewsets.ModelViewSet):
         #updates question ID with question title in response
         resp_data['question_related'] = question_id.title
         return Response(resp_data, status=status.HTTP_201_CREATED)
-
-
-class ListAnswerView(APIView):
-    def get(self,request,format =None):
-
-        #to send json data
-        answers = Answer.objects.all()
-        serializer = AnswerSerializer(answers, many =True)
-        return JsonResponse(serializer.data, safe =False)
-
-        ##if want to set a list object, use this
-        # queryset = Answer.objects.all()
-        # return Response({'profiles': queryset})
- 
-
-    def post(self,request,format =None):
-        data = JSONParser().parse(request)                 
-        serializer =AnswerSerializer(data = data)  
- 
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data,status = status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
-
 
 
 class QuestionView(viewsets.ModelViewSet):
