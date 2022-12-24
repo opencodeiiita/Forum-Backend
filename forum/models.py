@@ -29,7 +29,7 @@ class Question(models.Model):
     upvotes = models.PositiveIntegerField(default=0)
     answers = models.PositiveIntegerField(default=0)
     class Meta:
-        models.UniqueConstraint(fields=['author','answers'],name='unique pair of author and answers')
-
+      #  models.UniqueConstraint(fields=['author','answers'],name='unique pair of author and answers')
+        unique_together = [['author','answers']]
     def __str__(self):
         return f'{self.id}: {self.title}'
