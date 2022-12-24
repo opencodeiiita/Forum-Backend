@@ -1,5 +1,6 @@
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from forum.models import Answer, Question
 from forum.serialzers import AnswerSerializer, QuestionSerializer
@@ -25,6 +26,29 @@ class AnswerView(viewsets.ModelViewSet):
         #updates question ID with question title in response
         resp_data['question_related'] = question_id.title
         return Response(resp_data, status=status.HTTP_201_CREATED)
+
+
+class ListAnswerView(APIView):
+    def get(self,request,format =None):
+
+        #to send json data
+        answers = Answer.objects.all()
+        serializer = AnswerSerializer(answers, many =True)
+        return JsonResponse(serializer.data, safe =False)
+
+        ##if want to set a list object, use this
+        # queryset = Answer.objects.all()
+        # return Response({'profiles': queryset})
+ 
+
+    def post(self,request,format =None):
+        data = JSONParser().parse(request)                 
+        serializer =AnswerSerializer(data = data)  
+ 
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data,status = status.HTTP_201_CREATED)
+        return JsonResponse(serializer.errors,status = status.HTTP_400_BAD_REQUEST)
 
 
 

@@ -8,4 +8,5 @@ router.register(r'questions', views.QuestionView)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('answers/', ListAnswerView.as_view())      #for list answer view
 ]
