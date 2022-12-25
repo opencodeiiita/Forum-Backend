@@ -16,8 +16,7 @@ class AnswerView(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
     
     def list(self, request):
-        queryset = User.objects.all()
-        serializer = AnswerSerializer(queryset, many=True)
+        serializer = AnswerSerializer(self.queryset, many=True)
         return Response(serializer.data)
 
     def create(self, request, *args, **kwargs):
