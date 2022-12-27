@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from accounts.models import Profile
+import django.contrib.auth.password_validation as validators
 
 class UserCreateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,3 +34,20 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = '__all__'
+
+       
+class ChangePasswordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        old_password = serializers.CharField(required = True,write_only = True)
+        new_password = serializers.CharField(required = True,write_only = True)
+        new_password_confirm = serializers.CharField(required = True,write_only = True)
+        fields = '__all__'
+        
+        def validate(self,data):
+            new_password = data['new_password']
+            new_password_confirm = data['new_password_confirm']
+            if new_password != new_password_confirm:
+                raise serializers.ValidationError({'password':'passwords must match'})
+            validators.validate_password(new_password)
+            return data
