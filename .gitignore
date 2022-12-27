@@ -8,6 +8,7 @@ media
 
 #ignoring uploaded png files
 *.png
+!default.png
 *.jpg
 
 
