@@ -1,5 +1,6 @@
 from rest_framework import permissions, status, viewsets
 from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from forum.models import Answer, Question
 from forum.serialzers import AnswerSerializer, QuestionSerializer
@@ -14,6 +15,10 @@ class AnswerView(viewsets.ModelViewSet):
     serializer_class = AnswerSerializer
     permission_classes = [permissions.IsAuthenticated]
     
+    def list(self, request):
+        serializer = AnswerSerializer(self.queryset, many=True)
+        return Response(serializer.data)
+
     def create(self, request, *args, **kwargs):
         serializer = AnswerSerializer(data=request.data)
         if not serializer.is_valid():
@@ -25,7 +30,6 @@ class AnswerView(viewsets.ModelViewSet):
         #updates question ID with question title in response
         resp_data['question_related'] = question_id.title
         return Response(resp_data, status=status.HTTP_201_CREATED)
-
 
 
 class QuestionView(viewsets.ModelViewSet):
