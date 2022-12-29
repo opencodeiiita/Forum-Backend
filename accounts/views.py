@@ -5,13 +5,13 @@ from django.contrib.auth.models import User
 from rest_framework.generics import UpdateAPIView
 from django.contrib.auth import logout
 from django.core.exceptions import ObjectDoesNotExist   
+
 class ChangePasswordView(UpdateAPIView):
         serializer_class = ChangePasswordSerializer
         model = User
         def update(self, request, *args, **kwargs):
             self.object = self.request.user
             serializer = self.get_serializer(data=request.data)
-
             if serializer.is_valid():
                 if not self.object.check_password(serializer.data.get("old_password")):
                     return Response({"old_password": ["Wrong password."]}, status=status.HTTP_400_BAD_REQUEST)
